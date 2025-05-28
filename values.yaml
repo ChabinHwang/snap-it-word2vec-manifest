@@ -35,5 +35,5 @@ autoscaling:
 ingress:
   enabled: false 
 
-# secrets:
-#   name: my-secret
+secrets:
+  name: my-secret

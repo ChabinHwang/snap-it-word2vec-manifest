@@ -36,4 +36,4 @@ ingress:
   enabled: false 
 
 secrets:
-  name: my-secret
+  name: my-registry-secret

@@ -2,15 +2,15 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "snap-it-word2vec.fullname" . }}
+  name: snap-it-word2vec
   namespace: {{ .Values.namespace }}
   labels:
-    {{- include "snap-it-word2vec.labels" . | nindent 4 }}
+    app: snap-it-word2vec
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "snap-it-word2vec.fullname" . }}
+    name: snap-it-word2vec
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

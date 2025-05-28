@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snap-it-word2vec
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: snap-it-word2vec
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: snap-it-word2vec
+  template:
+    metadata:
+      labels:
+        app: snap-it-word2vec
+    spec:
+      imagePullSecrets:
+        {{- with .Values.imagePullSecrets }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+      volumes:
+        - name: model-volume
+          persistentVolumeClaim:
+            claimName: word2vec-model-pvc
+      containers:
+        - name: snap-it-word2vec
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: model-volume
+              mountPath: /app/models
+              readOnly: true
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }} 
+          envFrom:
+            - secretRef:
+                name: {{ .Values.secrets.name }}
+          # 시작 준비 상태 확인
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 60  # 모델 로딩 시간 고려
+            periodSeconds: 10
+          # 활성 상태 확인
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+            initialDelaySeconds: 120  # 모델 로딩 시간 고려
+            periodSeconds: 30

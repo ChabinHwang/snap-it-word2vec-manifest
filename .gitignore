@@ -1,0 +1,26 @@
+# macOS 관련 파일
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# IDE 관련 파일
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Helm 차트 관련
+.helm/
+
+# 임시 파일
+*.tmp
+*.bak
+*.log

@@ -28,9 +28,9 @@ resources:
 
 autoscaling:
   enabled: true # 자동 확장 활성화
-  minReplicas: 1 # 최소 2개의 파드 생성
+  minReplicas: 1 # 최소 1개의 파드 생성
   maxReplicas: 2 # 최대 2개의 파드 생성
-  targetCPUUtilizationPercentage: 90 # 90% 사용률 유지
+  targetCPUUtilizationPercentage: 80 # 80% 사용률 유지
 
 ingress:
   enabled: false 

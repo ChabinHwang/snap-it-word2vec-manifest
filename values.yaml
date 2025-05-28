@@ -14,7 +14,7 @@ imagePullSecrets:
 service:
   type: NodePort
   port: 8000
-  nodePort: 32766
+  nodePort: 32765
 
 
 # 리소스 제한

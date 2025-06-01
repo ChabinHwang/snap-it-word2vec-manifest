@@ -1,5 +1,5 @@
 # Snap-It Server 애플리케이션을 위한 기본 값 설정
-replicaCount: 1
+replicaCount: 2
 
 namespace: snapit-word2voc
 
@@ -20,14 +20,14 @@ service:
 # 리소스 제한
 resources:
   limits:
-    cpu: 1000m
+    cpu: 1500m
     memory: 5120Mi
   requests:
     cpu: 500m
     memory: 4096Mi
 
 autoscaling:
-  enabled: true # 자동 확장 활성화
+  enabled: false # 자동 확장 활성화
   minReplicas: 1 # 최소 1개의 파드 생성
   maxReplicas: 2 # 최대 2개의 파드 생성
   targetCPUUtilizationPercentage: 80 # 80% 사용률 유지

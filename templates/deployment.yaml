@@ -45,18 +45,12 @@ spec:
             httpGet:
               path: /health
               port: {{ .Values.service.port }}
-            initialDelaySeconds: 300  # 모델 로딩 시간 고려
-            periodSeconds: 20
-            timeoutSeconds: 10
-            successThreshold: 1
-            failureThreshold: 15
+            initialDelaySeconds: 30  # 모델 로딩 시간 고려
+            periodSeconds: 10
           # 활성 상태 확인
           livenessProbe:
             httpGet:
               path: /health
               port: {{ .Values.service.port }}
-            initialDelaySeconds: 600  # 모델 로딩 시간 고려
-            periodSeconds: 30
-            timeoutSeconds: 10
-            successThreshold: 1
-            failureThreshold: 10
+            initialDelaySeconds: 60  # 모델 로딩 시간 고려
+            periodSeconds: 20

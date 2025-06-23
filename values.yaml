@@ -5,7 +5,7 @@ namespace: snapit-word2voc
 
 image:
   repository: ghcr.io/chabinhwang/snap-it-word2vec
-  tag: 2f0b6e19436a90cc498423b1e84fc0802487d3ce
+  tag: 85a3b4260bde4add8477af2099d9d0772aece542
   pullPolicy: IfNotPresent
 
 imagePullSecrets:
